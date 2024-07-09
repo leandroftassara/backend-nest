@@ -12,7 +12,7 @@ model User {
   email String @unique @db.VarChar(150)
   name String @db.VarChar(150)
   password String @db.VarChar(60)
-  verificationCode String @db.VarChar(6) @map("verification_code")
+  verificationToken String @db.VarChar(128) @map("verification_token")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   vericatedAt DateTime? @map("verified_at")

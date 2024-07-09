@@ -15,9 +15,7 @@ export class CreateUserService {
 
   async create(createUserDto: CreateUserDto): Promise<any> {
     // Gera um código de verificação para email
-    const verificationCode = Array.from({ length: 6 }, () =>
-      crypto.randomInt(0, 10),
-    ).join('');
+    const verificationToken = crypto.randomBytes(32).toString('hex');
 
     // Criptografa senha
     createUserDto.password = await this.utils.encryptPassword(
@@ -29,7 +27,7 @@ export class CreateUserService {
       name: createUserDto.name,
       email: createUserDto.email,
       password: createUserDto.password,
-      verificationCode,
+      verificationToken,
     });
 
     // Checa conflito de email
