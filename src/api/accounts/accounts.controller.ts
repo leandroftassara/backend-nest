@@ -12,6 +12,7 @@ export class AccountsController {
 
   @Post('register')
   async create(@Body() createAccountDto: CreateAccountDto) {
+    //Verificação das variaveis
     const { password, passwordConfirmation } = createAccountDto;
 
     if (password !== passwordConfirmation) {
