@@ -4,10 +4,12 @@ import { CreateUserDto } from './create-user.dto';
 import { Utils } from 'src/shared/utils';
 import { Mailer } from 'src/shared/mailer';
 import { UsersRepository } from '../users.repository';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CreateUserService {
   constructor(
+    private readonly configService: ConfigService,
     private readonly utils: Utils,
     private readonly mailer: Mailer,
     private readonly usersRepository: UsersRepository,
@@ -15,7 +17,7 @@ export class CreateUserService {
 
   async create(createUserDto: CreateUserDto): Promise<any> {
     // Gera um código de verificação para email
-    const verificationToken = crypto.randomBytes(32).toString('hex');
+    const verificationToken = crypto.randomBytes(64).toString('hex');
 
     // Criptografa senha
     createUserDto.password = await this.utils.encryptPassword(
@@ -38,7 +40,7 @@ export class CreateUserService {
 
     // Envia email
     await this.mailer.sendEmail({
-      sender: 'account@leandr1n.com',
+      sender: this.configService.get('AWS_SES_ACCOUNT_SENDER'),
       to: 'account@leandr1n.com',
       subject: 'Confirmação de cadastro',
       name: this.utils.getFirstName(createUserDto.name),

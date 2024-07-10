@@ -1,14 +1,17 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class Mailer {
+  constructor(private readonly configService: ConfigService) {}
+
   async sendEmail(emailParams: any) {
     const sesClient = new SESClient({
-      region: 'sa-east-1',
+      region: this.configService.get('AWS_SES_REGION'),
       credentials: {
-        accessKeyId: 'AKIA47CR2MQLK4LJNSIZ',
-        secretAccessKey: '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',
+        accessKeyId: this.configService.get('AWS_SES_ACCESS_KEY'),
+        secretAccessKey: this.configService.get('AWS_SES_SECRET_KEY'),
       },
     });
 
@@ -28,7 +31,7 @@ export class Mailer {
           //   Data: loadTemplate()
           // }
           Text: {
-            Data: `Hello ${emailParams.name}, welcome to our service!`,
+            Data: `Hello ${emailParams.name}, welcome to our service! - ${this.configService.get('ENVIRONMENT')}`,
           },
         },
       },

@@ -5,7 +5,9 @@ import { AccountsModule } from './api/accounts/accounts.module';
 
 @Module({
   imports: [
+    // Carrega variaveis de ambiente
     ConfigModule.forRoot({ isGlobal: true }),
+    // Carrega módulos da aplicação
     AccountsModule,
     UsersModule,
   ],
