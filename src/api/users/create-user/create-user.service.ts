@@ -1,23 +1,23 @@
-import crypto from 'crypto';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './create-user.dto';
 import { Utils } from 'src/shared/utils';
-import { Mailer } from 'src/shared/mailer';
 import { UsersRepository } from '../users.repository';
 import { ConfigService } from '@nestjs/config';
+import { MailerService } from 'src/shared/mailer.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class CreateUserService {
   constructor(
     private readonly configService: ConfigService,
     private readonly utils: Utils,
-    private readonly mailer: Mailer,
+    private readonly mailerService: MailerService,
     private readonly usersRepository: UsersRepository,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<any> {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     // Gera um código de verificação para email
-    const verificationToken = crypto.randomBytes(64).toString('hex');
+    const verificationToken = this.utils.generateAccountVerificationToken();
 
     // Criptografa senha
     createUserDto.password = await this.utils.encryptPassword(
@@ -38,8 +38,8 @@ export class CreateUserService {
         'There is already an user for the provided email',
       );
 
-    // Envia email
-    await this.mailer.sendEmail({
+    // Envia email de verificação
+    await this.mailerService.sendEmail({
       sender: this.configService.get('AWS_SES_ACCOUNT_SENDER'),
       to: 'account@leandr1n.com',
       subject: 'Confirmação de cadastro',

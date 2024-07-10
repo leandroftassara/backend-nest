@@ -6,10 +6,12 @@ import { CreateAccountDto } from './create-account.dto';
 export class CreateAccountService {
   constructor(private readonly createUserService: CreateUserService) {}
 
-  async create(createAccountDto: CreateAccountDto): Promise<any> {
+  async create(
+    createAccountDto: CreateAccountDto,
+  ): Promise<{ message: string }> {
     // Chama serviço para criação de usuário
-    const user = await this.createUserService.create(createAccountDto);
+    await this.createUserService.create(createAccountDto);
 
-    return user;
+    return { message: 'Created' };
   }
 }
