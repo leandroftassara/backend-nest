@@ -43,7 +43,12 @@ export class CreateUserService {
       sender: this.configService.get('AWS_SES_ACCOUNT_SENDER'),
       to: 'account@leandr1n.com',
       subject: 'Confirmação de cadastro',
-      name: this.utils.getFirstName(createUserDto.name),
+      template: 'account-created.html',
+      variables: {
+        name: this.utils.getFirstName(createUserDto.name),
+        environment: this.configService.get('ENVIRONMENT'),
+        verificationLink: `https://dev.leandr1n.com/account/verificate?token=${verificationToken}`,
+      },
     });
 
     return user;

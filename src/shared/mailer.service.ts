@@ -1,3 +1,6 @@
+import path from 'path';
+import fs from 'fs';
+import Handlebars from 'handlebars';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -15,6 +18,18 @@ export class MailerService {
       },
     });
 
+    const loadTemplate = () => {
+      const templatePath = path.join(
+        __dirname,
+        'templates',
+        emailParams.template,
+      );
+
+      const templateSource = fs.readFileSync(templatePath, 'utf8');
+
+      return Handlebars.compile(templateSource)(emailParams.variables);
+    };
+
     const params = {
       Source: emailParams.sender,
       Destination: {
@@ -26,12 +41,9 @@ export class MailerService {
           Data: emailParams.subject,
         },
         Body: {
-          // Html: {
-          //   Charset: "UTF-8",
-          //   Data: loadTemplate()
-          // }
-          Text: {
-            Data: `Hello ${emailParams.name}, welcome to our service! - ${this.configService.get('ENVIRONMENT')}`,
+          Html: {
+            Charset: 'UTF-8',
+            Data: loadTemplate(),
           },
         },
       },
