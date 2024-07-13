@@ -1,7 +1,7 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
-import { CreateAccountDto } from './create-account/create-account.dto';
+import { Utils } from '../../shared/utils';
 import { CreateAccountService } from './create-account/create-account.service';
-import { Utils } from 'src/shared/utils';
+import { CreateAccountDto } from './create-account/create-account.dto';
 
 @Controller('accounts')
 export class AccountsController {
@@ -10,7 +10,7 @@ export class AccountsController {
     private readonly createAccountService: CreateAccountService,
   ) {}
 
-  @Post('register')
+  @Post('create')
   async create(@Body() createAccountDto: CreateAccountDto) {
     //Verificação das variaveis
     const { password, passwordConfirmation } = createAccountDto;

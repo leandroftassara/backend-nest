@@ -1,5 +1,5 @@
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
 import Handlebars from 'handlebars';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { Injectable } from '@nestjs/common';

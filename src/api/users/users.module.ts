@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersController } from './users.controller';
-import { Utils } from 'src/shared/utils';
 import { CreateUserModule } from './create-user/create-user.module';
+import { Utils } from '../../shared/utils';
 
 @Module({
   imports: [CreateUserModule],

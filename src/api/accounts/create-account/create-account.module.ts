@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
+import { CreateUserModule } from '../../users/create-user/create-user.module';
 import { CreateAccountService } from './create-account.service';
-import { CreateUserModule } from 'src/api/users/create-user/create-user.module';
 
 @Module({
   imports: [CreateUserModule],

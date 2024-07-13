@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { CreateUserService } from './create-user.service';
 import { UsersRepository } from '../users.repository';
-import { PrismaService } from 'src/shared/prisma.service';
-import { Utils } from 'src/shared/utils';
-import { MailerService } from 'src/shared/mailer.service';
+import { Utils } from '../../../shared/utils';
+import { MailerService } from '../../../shared/mailer.service';
+import { PrismaService } from '../../../shared/prisma.service';
 
 @Module({
   providers: [

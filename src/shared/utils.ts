@@ -1,7 +1,6 @@
-import crypto from 'crypto';
-import bcrypt from 'bcrypt';
+import * as crypto from 'crypto';
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
 
 @Injectable()
 export class Utils {
