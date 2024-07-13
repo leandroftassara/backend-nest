@@ -80,7 +80,7 @@ describe('Accounts (e2e)', () => {
   });
 
   it('POST /accounts/create - Conflict', async () => {
-    return request(app.getHttpServer())
+    return await request(app.getHttpServer())
       .post('/accounts/create')
       .send({
         name: 'Test User',
