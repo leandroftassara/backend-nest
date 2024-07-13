@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from './api/users/users.module';
+// import { UsersModule } from './api/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AccountsModule } from './api/accounts/accounts.module';
 
@@ -9,7 +9,7 @@ import { AccountsModule } from './api/accounts/accounts.module';
     ConfigModule.forRoot({ isGlobal: true }),
     // Carrega módulos da aplicação
     AccountsModule,
-    UsersModule,
+    // UsersModule,
   ],
   providers: [],
   exports: [],
