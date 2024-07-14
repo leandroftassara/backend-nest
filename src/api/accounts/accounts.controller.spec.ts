@@ -52,30 +52,29 @@ describe('AccountsController', () => {
 
     it('Should format email before CreateAccountService.create call', async () => {
       const createAccountDto = makeCreateAccountDto();
-      createAccountDto.email = 'TESTUSER@EXAMPLE.COM';
+      const testEmail = 'TESTUSER@EXAMPLE.COM';
+      createAccountDto.email = testEmail;
 
       const formatEmailSpy = jest.spyOn(utils, 'formatEmail');
-      const createSpy = jest.spyOn(createAccountService, 'create');
+      const createAccountSpy = jest.spyOn(createAccountService, 'create');
 
       await accountsController.create(createAccountDto);
 
-      expect(formatEmailSpy).toHaveBeenCalledWith('TESTUSER@EXAMPLE.COM');
-      expect(createSpy).toHaveBeenCalledWith({
-        name: 'Test User',
-        email: utils.formatEmail('TESTUSER@EXAMPLE.COM'),
-        password: 'password123',
-        passwordConfirmation: 'password123',
+      expect(formatEmailSpy).toHaveBeenCalledWith(testEmail);
+      expect(createAccountSpy).toHaveBeenCalledWith({
+        ...createAccountDto,
+        email: utils.formatEmail(testEmail),
       });
     });
 
-    it('Should call CreateAccountService.create with createAccountDto', async () => {
+    it('Should call CreateAccountService.create with CreateAccountDto', async () => {
       const createAccountDto = makeCreateAccountDto();
-
-      const createSpy = jest.spyOn(createAccountService, 'create');
 
       await accountsController.create(createAccountDto);
 
-      expect(createSpy).toHaveBeenCalledWith(createAccountDto);
+      expect(createAccountService.create).toHaveBeenCalledWith(
+        createAccountDto,
+      );
     });
 
     it('Should return CreateAccountResponse)', async () => {
