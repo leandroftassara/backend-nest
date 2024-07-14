@@ -1,6 +1,9 @@
 import { Test } from '@nestjs/testing';
 import { AccountsController } from './accounts.controller';
-import { CreateAccountService } from './create-account/create-account.service';
+import {
+  CreateAccountResponse,
+  CreateAccountService,
+} from './create-account/create-account.service';
 import { CreateAccountDto } from './create-account/create-account.dto';
 import { Utils } from '../../shared/utils';
 import { BadRequestException } from '@nestjs/common';
@@ -9,6 +12,13 @@ describe('AccountsController', () => {
   let accountsController: AccountsController;
   let utils: Utils;
   let createAccountService: CreateAccountService;
+
+  const makeCreateAccountDto = (): CreateAccountDto => ({
+    name: 'Test User',
+    email: 'testuser@example.com',
+    password: 'password123',
+    passwordConfirmation: 'password123',
+  });
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -32,25 +42,17 @@ describe('AccountsController', () => {
 
   describe('Create', () => {
     it('Should throw BadRequestException if passwords are different', async () => {
-      const createAccountDto: CreateAccountDto = {
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'password12',
-        passwordConfirmation: 'password123',
-      };
+      const createAccountDto = makeCreateAccountDto();
+      createAccountDto.passwordConfirmation = '123';
 
       await expect(accountsController.create(createAccountDto)).rejects.toThrow(
         BadRequestException,
       );
     });
 
-    it('Should format email before service call', async () => {
-      const createAccountDto: CreateAccountDto = {
-        name: 'Test User',
-        email: 'TESTUSER@EXAMPLE.COM',
-        password: 'password123',
-        passwordConfirmation: 'password123',
-      };
+    it('Should format email before CreateAccountService.create call', async () => {
+      const createAccountDto = makeCreateAccountDto();
+      createAccountDto.email = 'TESTUSER@EXAMPLE.COM';
 
       const formatEmailSpy = jest.spyOn(utils, 'formatEmail');
       const createSpy = jest.spyOn(createAccountService, 'create');
@@ -67,12 +69,7 @@ describe('AccountsController', () => {
     });
 
     it('Should call CreateAccountService.create with createAccountDto', async () => {
-      const createAccountDto: CreateAccountDto = {
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'password123',
-        passwordConfirmation: 'password123',
-      };
+      const createAccountDto = makeCreateAccountDto();
 
       const createSpy = jest.spyOn(createAccountService, 'create');
 
@@ -81,15 +78,10 @@ describe('AccountsController', () => {
       expect(createSpy).toHaveBeenCalledWith(createAccountDto);
     });
 
-    it('Should return CreateAccountService.create response)', async () => {
-      const createAccountDto: CreateAccountDto = {
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'password123',
-        passwordConfirmation: 'password123',
-      };
+    it('Should return CreateAccountResponse)', async () => {
+      const createAccountDto = makeCreateAccountDto();
 
-      const result = { message: 'Created' };
+      const result: CreateAccountResponse = { message: 'Created' };
 
       jest.spyOn(createAccountService, 'create').mockResolvedValue(result);
 
