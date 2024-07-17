@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { Utils } from '../../../shared/utils';
 import { MailerService } from '../../../shared/mailer.service';
 import { UsersRepository } from '../users.repository';
-import { CreateAccountDto } from '../../accounts/create-account/create-account.dto';
 import { CreateUserDto } from './create-user.dto';
 import { User } from '@prisma/client';
 import { ConflictException } from '@nestjs/common';
