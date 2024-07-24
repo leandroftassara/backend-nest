@@ -14,15 +14,13 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.8.0
+      uses: appleboy/ssh-action@v0.1.8
       with:
-        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
-
-    - name: Deploy to EC2
-      run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@18.229.137.233 << 'EOF'
+        host: 18.229.137.233
+        username: ec2-user
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
           cd /path/to/your/app
           git pull origin main
           docker-compose down
           docker-compose up -d --build
-        EOF
