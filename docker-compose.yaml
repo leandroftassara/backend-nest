@@ -13,5 +13,21 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  nestjs:
+    build: .
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      AWS_SES_ACCESS_KEY: AKIA47CR2MQLO2AJRAQQ
+      AWS_SES_SECRET_KEY: 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
+      AWS_SES_REGION: sa-east-1
+      AWS_SES_ACCOUNT_SENDER: account@leandr1n.com
+      DATABASE_URL: postgresql://admin:admin@postgres:5432/postgres
+      # DATABASE_URL: postgresql://admin:admin@localhost:5432/postgres
+      ENVIRONMENT: DEV
+
 volumes:
   pgdata:
