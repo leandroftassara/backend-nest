@@ -26,7 +26,7 @@ async function bootstrap() {
   // Swagger (Documentação)
   const config = new DocumentBuilder()
     .setTitle('Users Manager')
-    .setDescription('Documentação da API Nest')
+    .setDescription('Documentação da API de gestão de contas e usuários, criada a partir do framework Nest, como caso de estudo.')
     .setVersion('1.0.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);  

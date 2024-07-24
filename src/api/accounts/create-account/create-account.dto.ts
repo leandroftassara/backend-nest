@@ -6,7 +6,6 @@ export class CreateAccountDto {
   @MaxLength(150)
   @ApiProperty({
     description: 'Nome do usuário',
-    // example: 'John Doe',
     maxLength: 150,
   })
   name: string;
@@ -15,7 +14,6 @@ export class CreateAccountDto {
   @MaxLength(150)
   @ApiProperty({
     description: 'Email do usuário',
-    // example: 'john@example.com',
     format: 'email',
     maxLength: 150,
   })
@@ -25,7 +23,8 @@ export class CreateAccountDto {
   @MaxLength(32)
   @ApiProperty({
     description: 'Senha do usuário',
-    // example: '<user-password>',
+    minLength: 8,
+    maxLength: 32
   })
   password: string;
 
@@ -33,7 +32,8 @@ export class CreateAccountDto {
   @MaxLength(32)
   @ApiProperty({
     description: 'Senha do usuário',
-    // example: '<user-password>',
+    minLength: 8,
+    maxLength: 32
   })
   passwordConfirmation: string;
 }
