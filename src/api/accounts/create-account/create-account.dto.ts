@@ -31,7 +31,7 @@ export class CreateAccountDto {
   @MinLength(8)
   @MaxLength(32)
   @ApiProperty({
-    description: 'Senha do usuário',
+    description: 'Confirmação da senha do usuário (deve ser igual a senha)',
     minLength: 8,
     maxLength: 32
   })

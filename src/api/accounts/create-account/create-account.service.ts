@@ -4,7 +4,7 @@ import { CreateAccountDto } from './create-account.dto';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAccountResponse {
-  @ApiProperty()
+  @ApiProperty({example: 'Created'})
   message: string;
 }
 

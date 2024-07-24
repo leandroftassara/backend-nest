@@ -1,23 +1,28 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class BadRequestExceptionResponse {
-  @ApiProperty()
+  @ApiProperty({example: 400})
   statusCode: number;
 
-  @ApiProperty()
-  message: string[];
+  @ApiProperty({
+    oneOf: [
+      { type: 'string' },
+      { type: 'array', items: { type: 'string' } }
+    ]
+  })
+  message: string[] | string;
 
-  @ApiProperty()
+  @ApiProperty({example: "Bad Request"})
   error: string;
 }
 
 export class ConflictExceptionResponse {
-    @ApiProperty()
+    @ApiProperty({example: 409})
     statusCode: number;
   
     @ApiProperty()
     message: string;
   
-    @ApiProperty()
+    @ApiProperty({example: "Conflict"})
     error: string;
   }

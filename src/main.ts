@@ -4,9 +4,9 @@ import { ValidationPipe } from '@nestjs/common';
 import { ExcludeUserPasswordInterceptor } from './shared/exclude-user-password.interceptor';
 import {
   DocumentBuilder,
-  SwaggerDocumentOptions,
   SwaggerModule,
 } from '@nestjs/swagger';
+import { setupRedoc } from './shared/redoc.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -28,11 +28,15 @@ async function bootstrap() {
     .setTitle('Users Manager')
     .setDescription('Documentação da API de gestão de contas e usuários, criada a partir do framework Nest, como caso de estudo.')
     .setVersion('1.0.0')
+    .addTag('Accounts','Gerencia toda a parte de registro de uma conta até a verificação da mesma, quando passa a ser considerada como um usuário dentro do sistema.')
     .build();
   const document = SwaggerModule.createDocument(app, config);  
-  SwaggerModule.setup('docs', app, document, {swaggerOptions: {
+  SwaggerModule.setup('api', app, document, {swaggerOptions: {
     defaultModelsExpandDepth: -1,
   },});
+
+  // Configuração do ReDoc
+  setupRedoc(app);
 
   // Inicializa o app
   await app.listen(3000);

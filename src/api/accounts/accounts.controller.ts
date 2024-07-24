@@ -14,8 +14,8 @@ export class AccountsController {
   ) {}
 
   @Post()
-  @ApiOperation({summary: 'Solicita a criação de uma nova conta'})
-  @ApiResponse({ status: 201, description: 'Conta solicitada com sucesso', type: CreateAccountResponse })
+  @ApiOperation({summary: 'Solicita a criação de uma nova conta', description: 'Apenas solicita o registro de uma nova conta. A efetivação da conta se da após à confirmação do email.'})
+  @ApiResponse({ status: 201, description: 'Conta registrada com sucesso', type: CreateAccountResponse })
   @ApiResponse({ status: 400, description: 'Requisição inválida', type: BadRequestExceptionResponse  })
   @ApiResponse({ status: 409, description: 'Conta já registrada', type: ConflictExceptionResponse })
   @ApiBody({ type: CreateAccountDto })
