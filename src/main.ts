@@ -2,6 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { ExcludeUserPasswordInterceptor } from './shared/exclude-user-password.interceptor';
+import {
+  DocumentBuilder,
+  SwaggerDocumentOptions,
+  SwaggerModule,
+} from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,6 +23,18 @@ async function bootstrap() {
   // Usa o interceptador de remover a senha de objetos usuários
   app.useGlobalInterceptors(new ExcludeUserPasswordInterceptor());
 
+  // Swagger (Documentação)
+  const config = new DocumentBuilder()
+    .setTitle('Users Manager')
+    .setDescription('Documentação da API Nest')
+    .setVersion('1.0.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);  
+  SwaggerModule.setup('docs', app, document, {swaggerOptions: {
+    defaultModelsExpandDepth: -1,
+  },});
+
+  // Inicializa o app
   await app.listen(3000);
 }
 

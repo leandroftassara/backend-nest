@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserService } from '../../users/create-user/create-user.service';
 import { CreateAccountDto } from './create-account.dto';
+import { ApiProperty } from '@nestjs/swagger';
 
-export type CreateAccountResponse = { message: string };
+export class CreateAccountResponse {
+  @ApiProperty()
+  message: string;
+}
 
 @Injectable()
 export class CreateAccountService {
