@@ -97,7 +97,6 @@ describe('CreateUserService', () => {
       template: 'account-created.html',
       variables: {
         name: utils.getFirstName(createUserDto.name),
-        environment: expect.any(String),
         verificationLink: `https://dev.leandr1n.com/account/verificate?token=${utils.generateAccountVerificationToken()}`,
       },
     });

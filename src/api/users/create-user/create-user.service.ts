@@ -46,7 +46,6 @@ export class CreateUserService {
       template: 'account-created.html',
       variables: {
         name: this.utils.getFirstName(createUserDto.name),
-        environment: this.configService.get('ENVIRONMENT'),
         verificationLink: `https://dev.leandr1n.com/account/verificate?token=${verificationToken}`,
       },
     });
