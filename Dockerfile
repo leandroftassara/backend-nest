@@ -10,7 +10,7 @@ RUN npm install
 COPY . .
 
 # Compile o projeto
-RUN npm run build
+RUN prisma migrate deploy && prisma generate && npm run build
 
 # Exponha a porta que o aplicativo vai rodar
 EXPOSE 3000
