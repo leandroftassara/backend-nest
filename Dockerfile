@@ -16,6 +16,9 @@ RUN npm install -g prisma
 # Copie o restante dos arquivos do projeto
 COPY . .
 
+# Defina a variável de ambiente DATABASE_URL
+ENV DATABASE_URL=postgresql://admin:admin@postgres:5432/postgres
+
 # Gere os clientes Prisma e aplique as migrations
 RUN prisma generate
 RUN prisma migrate deploy
