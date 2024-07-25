@@ -1,33 +1,26 @@
-# Use a imagem Node.js oficial
-FROM node:20-alpine
+FROM node:20
 
-# Defina o diretório de trabalho
 WORKDIR /app
 
-# Copie os arquivos do projeto
+# Copiar os arquivos base
 COPY package*.json ./
 
-# Instale as dependências do projeto
+# Instalar as dependências
 RUN npm install
+RUN npm install -g @nestjs/cli
 
-# Instale o prisma como uma dependência global
-RUN npm install -g prisma
-
-# Copie o restante dos arquivos do projeto
+# Copiar o restante dos arquivos
+COPY prisma ./prisma/
 COPY . .
 
-# Defina a variável de ambiente DATABASE_URL
-ENV DATABASE_URL=postgresql://admin:admin@postgres:5432/postgres
+# Gerar os clientes Prisma
+RUN npx prisma generate
 
-# Gere os clientes Prisma e aplique as migrations
-RUN prisma generate
-RUN prisma migrate deploy
-
-# Compile o projeto
+# Compilar o projeto
 RUN npm run build
 
-# Exponha a porta que o aplicativo vai rodar
+# Expor a rota
 EXPOSE 3000
 
-# Comando para iniciar o aplicativo
-CMD ["npm", "run", "start:prod"]
+# Iniciar o app
+CMD ["npm", "run", "start:migrate-dev"]

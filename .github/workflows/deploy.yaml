@@ -16,7 +16,7 @@ jobs:
     - name: Set up SSH
       uses: appleboy/ssh-action@v0.1.8
       with:
-        host: 18.229.137.233
+        host: ${{ secrets.EC2_HOST }}
         username: ec2-user
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
