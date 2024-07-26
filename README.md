@@ -56,8 +56,6 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 8. **Para rodar os testes**
 
-   Para rodar os testes unitários:
-
    ```bash
    # testes unitários
    npm run test
