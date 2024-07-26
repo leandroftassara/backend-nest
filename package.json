@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prisma:generate": "DOTENV_CONFIG_PATH=.env.local npx prisma generate",
-    "prisma:migrate": "DOTENV_CONFIG_PATH=.env.local npx prisma migrate deploy",
+    "prisma:generate:local": "dotenv -e .env.local npx prisma generate",
+    "prisma:migrate:local": "dotenv -e .env.local npx prisma migrate deploy",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:e2e": "jest --config ./test/jest-e2e.json",

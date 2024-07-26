@@ -41,11 +41,11 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
    docker-compose -f docker-compose.local.yaml up -d --build
    ```
 
-6. **Inicializar o BD**
+6. **Mapear o BD**
 
     ```bash
-    npx prisma generate
-    npx prisma migrate deploy
+    npm run prisma:generate:local
+    npm run prisma:migrate:local
     ```
 
 7. **Para executar o projeto**
@@ -75,5 +75,5 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 9. **Visualizar a Documentação**
 
-   A documentação da API pode ser visualizada localmente em: [http://localhost:3000/docs](http://localhost:3000/docs)
+   Com o app em execução, é possível visualizar a documentação da API localmente em: [http://localhost:3000/docs](http://localhost:3000/docs)
 
