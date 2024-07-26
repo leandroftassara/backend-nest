@@ -14,9 +14,9 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 ### Rodando Localmente
 
-1. **Instalar Node.js v20**
+1. **Instalar Node.js v20, Docker e Docker Compose**
 
-   Certifique-se de ter a versão 20 do Node.js instalada em sua máquina.
+   Certifique-se de ter a versão 20 do Node.js, o docker e o docker-compose instalados em sua máquina.
 
 2. **Clonar e acessar o Repositório**
 
@@ -25,9 +25,9 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
    cd <NOME_DO_REPOSITORIO>
    ```
 
-3. **Criar e Preencher o Arquivo `.env.local`**
+3. **Criar e Preencher o Arquivo `.env`**
 
-   Crie um arquivo `.env.local` na raiz do projeto e preencha-o de acordo com a descrição fornecida no arquivo `.env.local.example`.
+   Crie um arquivo `.env` na raiz do projeto e preencha-o de acordo com a descrição fornecida no arquivo `.env.example`.
 
 4. **Instalar as dependências do projeto**
 
@@ -44,8 +44,8 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 6. **Mapear o BD**
 
     ```bash
-    npm run prisma:generate:local
-    npm run prisma:migrate:local
+    npx prisma generate
+    npx prisma migrate deploy
     ```
 
 7. **Para executar o projeto**
@@ -59,17 +59,13 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
    Para rodar os testes unitários:
 
    ```bash
+   # testes unitários
    npm run test
-   ```
 
-   Para rodar os testes de integração:
-
-   ```bash
+   # testes de integração
    npm run test:e2e
-   ```
 
-   Para verificar o test coverage:
-   ```bash
+   # coverage
    npm run test:cov
    ```
 
