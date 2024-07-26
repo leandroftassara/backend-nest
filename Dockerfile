@@ -23,4 +23,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Iniciar o app
-CMD ["npm", "run", "start:migrate-dev"]
+CMD ["npm", "run", "start:local"]
