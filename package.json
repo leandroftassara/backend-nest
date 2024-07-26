@@ -12,7 +12,7 @@
     "test:watch": "jest --watch",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:cov": "jest --coverage",
-    "start:local": "prisma generate && nest start --watch",
+    "start:local": "dotenv -e .env.local nest start --watch",
     "build": "nest build"
   },
   "dependencies": {

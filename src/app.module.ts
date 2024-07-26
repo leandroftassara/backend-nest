@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-// import { UsersModule } from './api/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AccountsModule } from './api/accounts/accounts.module';
 
@@ -14,4 +13,4 @@ import { AccountsModule } from './api/accounts/accounts.module';
   providers: [],
   exports: [],
 })
-export class AppModule {}
+export class AppModule { }
