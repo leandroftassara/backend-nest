@@ -16,7 +16,7 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 1. **Instalar Node.js v20, Docker e Docker Compose**
 
-   Certifique-se de ter a versão 20 do Node.js, o docker e o docker-compose instalados em sua máquina.
+   Certifique-se de ter a versão 20 do node, o docker e o docker-compose instalados em sua máquina.
 
 2. **Clonar e acessar o Repositório**
 
