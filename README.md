@@ -31,7 +31,9 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 4. **Instalar as dependências do projeto**
 
-   ```npm run install```
+   ```bash
+   npm run install
+   ```
 
 5. **Startar o Docker Compose**
 
@@ -41,16 +43,16 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 6. **Inicializar o BD**
 
-  ```bash
-  npx prisma generate
-  npx prisma migrate deploy
-  ```
+    ```bash
+    npx prisma generate
+    npx prisma migrate deploy
+    ```
 
 7. **Para executar o projeto**
 
-  ```bash
-  npm run start:local
-  ```
+    ```bash
+    npm run start:local
+    ```
 
 8. **Para rodar os testes**
 
