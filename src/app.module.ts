@@ -13,4 +13,4 @@ import { AccountsModule } from './api/accounts/accounts.module';
   providers: [],
   exports: [],
 })
-export class AppModule { }
+export class AppModule {}
