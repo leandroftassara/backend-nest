@@ -12,8 +12,6 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 ## Como Rodar o Projeto
 
-### Rodando Localmente
-
 1. **Instalar Node.js v20, Docker e Docker Compose**
 
    Certifique-se de ter a versão 20 do node, o docker e o docker-compose instalados em sua máquina.
