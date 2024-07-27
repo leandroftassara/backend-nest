@@ -4,13 +4,13 @@ import { CreateAccountDto } from './create-account.dto';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAccountResponse {
-  @ApiProperty({example: 'Created'})
+  @ApiProperty({ example: 'Created' })
   message: string;
 }
 
 @Injectable()
 export class CreateAccountService {
-  constructor(private readonly createUserService: CreateUserService) {}
+  constructor(private readonly createUserService: CreateUserService) { }
 
   async create(
     createAccountDto: CreateAccountDto,
