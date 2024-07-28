@@ -13,10 +13,11 @@
     "start:local": "nest start --watch",
     "build": "nest build",
     "prepare": "husky",
-    "precommit": ""
+    "lint": "eslint \"{src,apps,libs,test}//*.ts\" --fix"
   },
   "lint-staged": {
     "*.{js,ts}": [
+      "npm run lint",
       "npm run test -- --findRelatedTests"
     ]
   },
