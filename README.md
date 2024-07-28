@@ -41,16 +41,16 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 6. **Mapear o BD**
 
-    ```bash
-    npx prisma generate
-    npx prisma migrate deploy
-    ```
+   ```bash
+   npx prisma generate
+   npx prisma migrate deploy
+   ```
 
 7. **Para executar o projeto**
 
-    ```bash
-    npm run start:local
-    ```
+   ```bash
+   npm run start:local
+   ```
 
 8. **Para rodar os testes**
 
@@ -69,3 +69,24 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
    Com o app em execução, é possível visualizar a documentação da API localmente em: [http://localhost:3000/docs](http://localhost:3000/docs)
 
+## Recomendações
+
+Recomenda-se utilizar o VsCode para desenvolvimento do projeto. Recomenda-se também instalar as extensões `Prisma` e `Prettier`. Além disso, adicionar as configurações abaixo no settings.json:
+
+```
+# Para auto atualizar os imports quando necessário
+"typescript.updateImportsOnFileMove.enabled": "always",
+"javascript.updateImportsOnFileMove.enabled": "always",
+
+# Para auto importar os arquivos com o caminho de forma relativa
+"javascript.preferences.importModuleSpecifier": "relative",
+"typescript.preferences.importModuleSpecifier": "relative",
+
+# Para corrigir espaçamento entre chaves
+"typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+
+# Para definir a extensão prettier com o formatador padrão dos arquivos .ts
+"[typescript]": {
+   "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+```
