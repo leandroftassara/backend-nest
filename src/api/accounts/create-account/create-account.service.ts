@@ -18,8 +18,6 @@ export class CreateAccountService {
     // Chama serviço para criação de usuário
     await this.createUserService.create(createAccountDto);
 
-    console.log(123);
-
     return { message: 'Created' };
   }
 }
