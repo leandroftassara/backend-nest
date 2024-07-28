@@ -10,7 +10,7 @@ export class CreateAccountResponse {
 
 @Injectable()
 export class CreateAccountService {
-  constructor(private readonly createUserService: CreateUserService) { }
+  constructor(private readonly createUserService: CreateUserService) {}
 
   async create(
     createAccountDto: CreateAccountDto,
