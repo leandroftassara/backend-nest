@@ -90,3 +90,20 @@ Recomenda-se utilizar o VsCode para desenvolvimento do projeto. Recomenda-se tam
    "editor.defaultFormatter": "esbenp.prettier-vscode"
 },
 ```
+
+## Como modificar o projeto.
+
+O projeto está configurado para verificar a mensagem do commit, rodar o eslint e os testes para os arquivos commitados.
+
+Ao commitar, as mensagens devem seguir o padrão do [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary). Exemplos:
+
+```bash
+# formato básico
+<type>[optional scope]: <description>
+
+# exemplo 1
+docs: update readme file
+
+# exemplo 2 (com escopo)
+docs(readme): add 'Como modificar o projeto' section
+```
