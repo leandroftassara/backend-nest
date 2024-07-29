@@ -9,6 +9,7 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 - NestJS
 - Prisma
 - AWS
+- GitHub Hooks
 
 ## Como Rodar o Projeto
 
@@ -91,7 +92,7 @@ Recomenda-se utilizar o VsCode para desenvolvimento do projeto. Recomenda-se tam
 },
 ```
 
-## Como modificar o projeto.
+## Como modificar o projeto
 
 O projeto está configurado para verificar a mensagem do commit, rodar o eslint e os testes para os arquivos commitados.
 
