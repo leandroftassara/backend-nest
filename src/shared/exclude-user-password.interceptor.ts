@@ -22,7 +22,8 @@ export class ExcludeUserPasswordInterceptor implements NestInterceptor {
 
   private omitPassword(user: any): any {
     if (user && user.password !== undefined) {
-      const { password, ...result } = user;
+      const result = { ...user };
+      delete result.password;
       return result;
     }
     return user;

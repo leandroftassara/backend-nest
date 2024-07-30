@@ -1,5 +1,5 @@
 import { INestApplication } from '@nestjs/common';
-import  redoc from 'redoc-express';
+import redoc from 'redoc-express';
 
 export function setupRedoc(app: INestApplication<any>) {
   const redocOptions = {
