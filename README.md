@@ -10,6 +10,7 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 - Prisma
 - AWS
 - GitHub Hooks
+- Docker & Docker Compose
 
 ## Como Rodar o Projeto
 
