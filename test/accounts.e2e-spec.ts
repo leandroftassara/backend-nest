@@ -38,52 +38,54 @@ describe('Accounts (e2e)', () => {
     await app.close();
   });
 
-  it('POST /accounts/create - Success', async () => {
-    return await request(app.getHttpServer())
-      .post('/accounts/create')
-      .send({
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'password123',
-        passwordConfirmation: 'password123',
-      })
-      .expect(201)
-      .expect({ message: 'Created' });
-  });
+  describe('Create account', () => {
+    it('POST /accounts - Success', async () => {
+      return await request(app.getHttpServer())
+        .post('/accounts')
+        .send({
+          name: 'Test User',
+          email: 'testuser@example.com',
+          password: 'password123',
+          passwordConfirmation: 'password123',
+        })
+        .expect(201)
+        .expect({ message: 'Created' });
+    });
 
-  it('POST /accounts/create - Different passwords', async () => {
-    return await request(app.getHttpServer())
-      .post('/accounts/create')
-      .send({
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'password12',
-        passwordConfirmation: 'password123',
-      })
-      .expect(400);
-  });
+    it('POST /accounts - Different passwords', async () => {
+      return await request(app.getHttpServer())
+        .post('/accounts')
+        .send({
+          name: 'Test User',
+          email: 'testuser@example.com',
+          password: 'password12',
+          passwordConfirmation: 'password123',
+        })
+        .expect(400);
+    });
 
-  it('POST /accounts/create - Invalid', async () => {
-    return await request(app.getHttpServer())
-      .post('/accounts/create')
-      .send({
-        name2: 'Test User',
-        email2: 'testuser@example.com',
-        password2: 'password123',
-        passwordConfirmation2: 'password123',
-      })
-      .expect(400);
-  });
+    it('POST /accounts - Invalid', async () => {
+      return await request(app.getHttpServer())
+        .post('/accounts')
+        .send({
+          name2: 'Test User',
+          email2: 'testuser@example.com',
+          password2: 'password123',
+          passwordConfirmation2: 'password123',
+        })
+        .expect(400);
+    });
 
-  it('POST /accounts/create - Conflict', async () => {
-    return await request(app.getHttpServer())
-      .post('/accounts/create')
-      .send({
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'password123',
-        passwordConfirmation: 'password123',
-      })
-      .expect(409);
+    it('POST /accounts - Conflict', async () => {
+      return await request(app.getHttpServer())
+        .post('/accounts')
+        .send({
+          name: 'Test User',
+          email: 'testuser@example.com',
+          password: 'password123',
+          passwordConfirmation: 'password123',
+        })
+        .expect(409);
+    });
   });
 });
