@@ -61,7 +61,12 @@ describe('Accounts (e2e)', () => {
           password: 'password12',
           passwordConfirmation: 'password123',
         })
-        .expect(400);
+        .expect(400)
+        .expect({
+          message: 'Passwords do not match',
+          error: 'Bad Request',
+          statusCode: 400,
+        });
     });
 
     it('POST /accounts - Invalid', async () => {
