@@ -2,8 +2,8 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './create-user.dto';
 import { UsersRepository } from '../users.repository';
 import { ConfigService } from '@nestjs/config';
-import { Utils } from '../../../shared/utils';
-import { MailerService } from '../../../shared/mailer.service';
+import { Utils } from '../../../shared/helpers/utils';
+import { MailerService } from '../../../shared/infra/mailer.service';
 import { User } from '@prisma/client';
 
 @Injectable()

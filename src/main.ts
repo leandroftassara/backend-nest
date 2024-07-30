@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { ExcludeUserPasswordInterceptor } from './shared/exclude-user-password.interceptor';
+import { ExcludeUserPasswordInterceptor } from './shared/helpers/exclude-user-password.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { setupRedoc } from './shared/redoc.middleware';
+import { setupRedoc } from './shared/helpers/redoc.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

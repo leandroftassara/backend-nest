@@ -5,7 +5,7 @@ import {
   CreateAccountService,
 } from './create-account/create-account.service';
 import { CreateAccountDto } from './create-account/create-account.dto';
-import { Utils } from '../../shared/utils';
+import { Utils } from '../../shared/helpers/utils';
 import { BadRequestException } from '@nestjs/common';
 
 describe('AccountsController', () => {

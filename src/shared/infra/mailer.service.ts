@@ -20,8 +20,9 @@ export class MailerService {
 
     const loadTemplate = () => {
       const templatePath = path.join(
-        __dirname,
-        'templates',
+        process.cwd(),
+        'src',
+        'shared/email-templates',
         emailParams.template,
       );
 

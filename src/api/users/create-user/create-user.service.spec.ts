@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 import { CreateUserService } from './create-user.service';
 import { ConfigService } from '@nestjs/config';
-import { Utils } from '../../../shared/utils';
-import { MailerService } from '../../../shared/mailer.service';
+import { Utils } from '../../../shared/helpers/utils';
+import { MailerService } from '../../../shared/infra/mailer.service';
 import { UsersRepository } from '../users.repository';
 import { CreateUserDto } from './create-user.dto';
 import { User } from '@prisma/client';

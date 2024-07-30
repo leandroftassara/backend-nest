@@ -1,5 +1,5 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
-import { Utils } from '../../shared/utils';
+import { Utils } from '../../shared/helpers/utils';
 import {
   CreateAccountResponse,
   CreateAccountService,
@@ -9,7 +9,7 @@ import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   BadRequestExceptionResponse,
   ConflictExceptionResponse,
-} from '../../shared/swagger-exceptions';
+} from '../../shared/helpers/swagger-exceptions';
 
 @Controller('accounts')
 @ApiTags('Accounts')
