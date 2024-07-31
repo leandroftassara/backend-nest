@@ -17,10 +17,10 @@ COPY . .
 RUN npx prisma generate
 
 # Compilar o projeto
-RUN npm run build
+# RUN npm run build
 
 # Expor a rota
 EXPOSE 3000
 
 # Iniciar o app
-CMD ["npm", "run", "start:local"]
+CMD ["npm", "run", "start:dev"]
