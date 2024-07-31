@@ -30,4 +30,3 @@ jobs:
             git pull origin dev
             docker-compose -f docker-compose.dev.yaml down
             docker-compose -f docker-compose.dev.yaml up -d --build
-            npx prisma migrate deploy
