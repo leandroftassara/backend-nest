@@ -12,7 +12,9 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   nestjs:
-    build: ./
+    build:
+      context: .
+      dockerfile: dockerfile.dev.yaml
     restart: always
     ports:
       - '3000:3000'
