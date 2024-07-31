@@ -8,7 +8,7 @@ O objetivo deste projeto é desenvolver uma API para criação e gerenciamento d
 
 - NestJS
 - Prisma
-- AWS
+- AWS SES, S3, EC2, SSM
 - GitHub Hooks
 - Docker & Docker Compose
 

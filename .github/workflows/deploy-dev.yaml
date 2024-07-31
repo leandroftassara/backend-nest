@@ -20,13 +20,16 @@ jobs:
           username: ec2-user
           key: ${{ secrets.DEV_EC2_SSH_KEY }}
           script: |
-            export AWS_SES_ACCESS_KEY=${{ secrets.AWS_SES_ACCESS_KEY }}
-            export AWS_SES_SECRET_KEY=${{ secrets.AWS_SES_SECRET_KEY }}
-            export AWS_SES_REGION=${{ secrets.AWS_SES_REGION }}
-            export AWS_SES_ACCOUNT_SENDER=${{ secrets.AWS_SES_ACCOUNT_SENDER }}
-            export DATABASE_URL=${{ secrets.DATABASE_URL }}
             sudo service docker start
             cd /home/ec2-user/backend-nest
+
+            # Baixar o script de exportação de variáveis
+            curl -o export_env_vars.sh https://raw.githubusercontent.com/your-repo/backend-nest/dev/export-dev-envs.sh
+            chmod +x export_env_vars.sh
+
+            # Executar o script de exportação de variáveis
+            source ./export_env_vars.sh
+
             git pull origin dev
             docker-compose -f docker-compose.dev.yaml down
             docker-compose -f docker-compose.dev.yaml up -d --build
