@@ -22,5 +22,5 @@ jobs:
           script: |
             cd /home/ec2-user/backend-nest
             git pull origin dev
-            docker-compose down
-            docker-compose up -d --build
+            docker-compose -f docker-compose.dev.yaml down
+            docker-compose -f docker-compose.dev.yaml up -d --build
