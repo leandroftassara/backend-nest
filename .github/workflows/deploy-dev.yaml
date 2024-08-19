@@ -22,14 +22,7 @@ jobs:
           script: |
             sudo service docker start
             cd /home/ec2-user/backend-nest
-
-            # Baixar o script de exportação de variáveis
-            curl -o export-dev-envs.sh https://raw.githubusercontent.com/your-repo/backend-nest/dev/export-dev-envs.sh
-            chmod +x export-dev-envs.sh
-
-            # Executar o script de exportação de variáveis
-            source ./export-dev-envs.sh
-
+            aws ssm get-parameters-by-path --path /dev --with-decryption --region your-region --query "Parameters[*].[Name,Value]" --output text | awk '{print $1 "=" $2}' > .env
             git pull origin dev
             docker-compose -f docker-compose.dev.yaml down
             docker-compose -f docker-compose.dev.yaml up -d --build
