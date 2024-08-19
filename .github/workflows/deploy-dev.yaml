@@ -22,7 +22,7 @@ jobs:
           script: |
             sudo service docker start
             cd /home/ec2-user/backend-nest
-            aws ssm get-parameters-by-path --path /dev --with-decryption --region your-region --query "Parameters[*].[Name,Value]" --output text | awk '{print $1 "=" $2}' > .env
+            aws ssm get-parameters-by-path --path /dev --with-decryption --region sa-east-1 --query "Parameters[*].[Name,Value]" --output text | awk '{print $1 "=" $2}' > .env
             git pull origin dev
             docker-compose -f docker-compose.dev.yaml down
             docker-compose -f docker-compose.dev.yaml up -d --build
