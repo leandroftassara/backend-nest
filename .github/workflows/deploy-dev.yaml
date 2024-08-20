@@ -22,11 +22,9 @@ jobs:
           script: |
             sudo service docker start
             cd /home/ec2-user/backend-nest
-            aws ssm get-parameters-by-path --path /dev --with-decryption --region sa-east-1 --query "Parameters[*].[Name,Value]" --output text
             aws ssm get-parameters-by-path --path /dev --with-decryption --region sa-east-1 --query "Parameters[*].[Name,Value]" --output text | \
             awk '{gsub(/^\/dev\//, "", $1); print $1 "=" $2}' > .env
-            # Exibir o conteúdo do .env para depuração
-            cat .env
+            git reset --hard HEAD
             git pull origin dev
             docker-compose -f docker-compose.dev.yaml down
             docker-compose -f docker-compose.dev.yaml up -d --build
