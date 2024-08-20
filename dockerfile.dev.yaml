@@ -15,7 +15,7 @@ COPY . .
 
 # Gerar os clientes Prisma
 RUN npx prisma generate
-RUN docker logs <nome_do_conteiner_postgres>
+RUN docker logs postgres
 RUN npx prisma migrate deploy
 
 # Compilar o projeto
