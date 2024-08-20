@@ -15,7 +15,7 @@ COPY . .
 
 # Gerar os clientes Prisma
 RUN npx prisma generate
-RUN npx prisma migrate deploy
+# RUN npx prisma migrate deploy
 
 # Compilar o projeto
 # RUN npm run build
