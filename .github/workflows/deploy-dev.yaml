@@ -22,8 +22,8 @@ jobs:
           script: |
             sudo service docker start
             cd /home/ec2-user/backend-nest
-            aws ssm get-parameters-by-path --path /dev --with-decryption --region sa-east-1 --query "Parameters[*].[Name,Value]" --output text | \
-            awk -F '/' '{print $NF}' | awk '{print $1 "=" $2}' > .env
+            aws ssm get-parameters-by-path --path $ENV_PATH --with-decryption --region sa-east-1 --query "Parameters[*].[Name,Value]" --output text | \
+            awk '{sub(/\t/, "="); print}' > .env
             # Exibir o conteúdo do .env para depuração
             cat .env
             git pull origin dev
